@@ -26,7 +26,7 @@ int main(void)
 
 	while ((ch = fgetc(fp1)) != EOF)
 	{
-		// fgetc : get each one char
+		// fgetc : get each one char,return does not contain a string terminator ('\0')
 		// fputc : put each one char
 		fputc(ch, fp2);
 	}
