@@ -32,21 +32,36 @@ int main(void)
         */
 	}
 
-	char buff[1024];  // 设置1024 字节长度字符-数组
+	char buff[MAX];  // 设置1024 字节长度字符-数组
 	memset(buff, '\0', sizeof(buff)); // memset 使用'\0' 填充 字符数组buff,填充大小为 sizeof(buff) 字节，就是1024
-    setvbuf(stdout, buff, _IOFBF, 1024);// 设置标准输出stdout 的块缓存
-    //setvbuf(stdout, buff, _IOLBF, 1024);// 设置标准输出stdout 的行缓存
+    //setvbuf(stdout, buff, _IOFBF, 1024);// 设置标准输出stdout 的块缓存
+    setvbuf(stdout, buff, _IOLBF, MAX);// 设置标准输出stdout 的行缓存
     //setvbuf(stdout, buff, _IONBF, 1024);// IONBF 不设置缓存
 
+    unsigned int num = 0;
+
+    while (1){
+        fgets(buffer,MAX,fp);
+        printf("%s",buffer);
+        num++;
+	if (num >1){
+	    break;
+	}
+    }
+
     // 文件坐标seek 指针位置归零，从头开始读取
-    fseek(fp,0,SEEK_SET) 
-    while (!feof(fp)) // feof 判断是否读取到文件末尾 EOF(end of file)
+    fseek(fp,0,SEEK_SET);
+    while (1) 
 	{
 		fgets(buffer, MAX, fp); // file get chr 逐个字符读取
 		printf("%s", buffer);
+		if (feof(fp)){ // feof 判断是否读取到文件末尾 EOF(end of file),正确就返回 1，所以不放在while() 括号里，避免最后一行多一次额外循环
+		    printf("%s","\0");
+		    break;
+		}
 	}
 
-    if ((fp2 = fopen("fishc.txt", "w")) == NULL)
+    if ((fp2 = fopen("out.txt", "w")) == NULL)
 	{
 		//printf("文件打开失败！\n");
 		//exit(EXIT_FAILURE);
