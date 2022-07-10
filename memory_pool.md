@@ -1,3 +1,10 @@
+堆(heap)
+栈(stack)
+BSS段(BSS segment/Uninitialized data segment)
+数据段(initialized data segment)
+代码段(test segment)
+
+
 -静态区(static)：全局变量存储，在程序的整个生命周期都存在
 
     存储全局(global)变量，或者通过static关键字创建的变量
